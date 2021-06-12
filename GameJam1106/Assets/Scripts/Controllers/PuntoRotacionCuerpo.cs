@@ -11,9 +11,16 @@ public class PuntoRotacionCuerpo : MonoBehaviour
         cuerpo = transform.parent.parent.GetComponent<CuerpoController>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ground"))
+        {
+            cuerpo.TocaElSuelo(gameObject);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.otherCollider.CompareTag("Ground"))
         {
             cuerpo.TocaElSuelo(gameObject);
         }

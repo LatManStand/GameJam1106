@@ -17,11 +17,8 @@ public class CuerpoController : MonoBehaviour
 
     private void Awake()
     {
-        rb1 = punto1.AddComponent<Rigidbody2D>();
-        rb1.simulated = true;
-        rb2 = punto2.AddComponent<Rigidbody2D>();
-        rb2.simulated = false;
-        puntoQueRota = 1;
+        rb1 = punto1.GetComponent<Rigidbody2D>();
+        rb2 = punto2.GetComponent<Rigidbody2D>();
     }
 
 
@@ -38,11 +35,11 @@ public class CuerpoController : MonoBehaviour
             transform.parent = null;
 
             punto2.transform.SetParent(transform.GetChild(0));
-            rb2.simulated = false;
+            rb2.isKinematic = true;
 
             transform.SetParent(punto1.transform);
             puntoQueRota = 1;
-            rb1.simulated = true;
+            rb1.isKinematic = false;
         }
         else
         {
@@ -50,12 +47,12 @@ public class CuerpoController : MonoBehaviour
             transform.parent = null;
 
             punto1.transform.SetParent(transform.GetChild(0));
-            rb1.simulated = false;
+            rb1.isKinematic = true;
 
 
             transform.SetParent(punto2.transform);
             puntoQueRota = 2;
-            rb2.simulated = true;
+            rb2.isKinematic = false;
         }
     }
 
@@ -100,11 +97,12 @@ public class CuerpoController : MonoBehaviour
             transform.SetParent(null);
 
             punto2.transform.SetParent(transform.GetChild(0));
-            rb2.simulated = false;
+            rb2.angularVelocity = 0f;
+            rb2.isKinematic = true;
 
             transform.SetParent(punto1.transform);
             puntoQueRota = 1;
-            rb1.simulated = true;
+            rb1.isKinematic = false;
         }
         else
         {
@@ -112,11 +110,12 @@ public class CuerpoController : MonoBehaviour
             transform.SetParent(null);
 
             punto1.transform.SetParent(transform.GetChild(0));
-            rb1.simulated = false;
+            rb1.angularVelocity = 0f;
+            rb1.isKinematic = true;
 
             transform.SetParent(punto2.transform);
             puntoQueRota = 2;
-            rb2.simulated = true;
+            rb2.isKinematic = false;
         }
     }
 }
