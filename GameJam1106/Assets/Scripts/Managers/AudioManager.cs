@@ -17,6 +17,9 @@ public class AudioManager : MonoBehaviour
 
     private float volumeValue;
 
+    public AudioSource normalButton;
+    public AudioSource closeButton;
+
 
     void OnEnable(){
 
@@ -62,6 +65,21 @@ public class AudioManager : MonoBehaviour
 
         }
 
+
+    }
+
+    public void PlayNormalButtonSound(){
+
+        Debug.Log("PAtata");
+        normalButton.Play();
+        
+
+    }
+
+    public void PlayCloseButtonSound()
+    {
+
+        closeButton.Play();
 
     }
 

@@ -46,7 +46,7 @@ public class PesistenceCanvas : MonoBehaviour{
 
     }
 
-    private void OpenOptionsInGame(){
+    public void OpenOptionsInGame(){
 
         if (!showingPausePanel)
         {
@@ -88,7 +88,7 @@ public class PesistenceCanvas : MonoBehaviour{
     }
 
 
-    public void MainMenuButton()
+    public void LevelSelectorButton()
     {
         SceneManager.LoadScene("LevelSelector");
 
