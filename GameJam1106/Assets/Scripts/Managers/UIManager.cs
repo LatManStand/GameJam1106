@@ -5,34 +5,67 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
 
-    private bool showingOptionsPanel = false;
-
-    public GameObject optionsPanel;
 
 
-    public void ShowOptionsPanel(){
+    private bool showingPausePanel = false;
 
-        if (showingOptionsPanel){
 
-            optionsPanel.SetActive(false);
-            showingOptionsPanel = false;
+    public GameObject pauseMenuPanel;
 
-        }else{
 
-            optionsPanel.SetActive(true);
-            showingOptionsPanel = true;
+
+    public static UIManager instance;
+
+    void Awake(){
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(this);
+        }
+
+        pauseMenuPanel = GameObject.FindGameObjectWithTag("Options");
+        pauseMenuPanel.SetActive(false);
+        showingPausePanel = false;
+
+    }
+
+    void Update(){
+
+        if (Input.GetKeyDown(KeyCode.Escape)){
+
+            OpenOptionsInGame();
+
 
         }
 
-
     }
 
-    public void ExitGame(){
 
-        Application.Quit(); 
+
+
+
+
+
+    private void OpenOptionsInGame(){
+
+        if (!showingPausePanel){
+        
+            pauseMenuPanel.SetActive(true);
+            showingPausePanel = true;
+        
+        }else{
+
+            pauseMenuPanel.SetActive(false);
+            showingPausePanel = false;
+
+        }
+        
 
     }
-
 
 
 }
