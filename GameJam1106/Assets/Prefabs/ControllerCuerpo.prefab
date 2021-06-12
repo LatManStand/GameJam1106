@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2424748613765328473}
   - component: {fileID: 5601164874391131122}
+  - component: {fileID: 1250459091}
   m_Layer: 10
   m_Name: ControllerCuerpo
-  m_TagString: Untagged
+  m_TagString: Cuerpo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,9 +48,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxVelocidad: 500
   aceleracion: 1500
+  cooldownCabeza: 1
+  tengoCabeza: 0
+  fuerzaLanzarCabeza: 300
   punto1: {fileID: 8792335069384983305}
   punto2: {fileID: 4163030264698565169}
   puntoQueRota: 0
+--- !u!70 &1250459091
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2424748613765328476}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.36}
+  m_Size: {x: 1.88, y: 3.88}
+  m_Direction: 0
 --- !u!1 &4163030264698565169
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,13 +293,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7179851854139439549}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2424748613765328473}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &8792335069384983305
 GameObject:
   m_ObjectHideFlags: 0

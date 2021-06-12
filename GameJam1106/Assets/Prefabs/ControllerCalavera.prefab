@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 590898775360688115}
   - component: {fileID: 590898775360688113}
   - component: {fileID: 590898775360688108}
-  m_Layer: 0
+  - component: {fileID: 970147843}
+  m_Layer: 11
   m_Name: ControllerCalavera
-  m_TagString: Untagged
+  m_TagString: Cabeza
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,6 +70,22 @@ MonoBehaviour:
   maxVelocidad: 250
   momentoAngular: 0
   aceleracion: 300
+--- !u!58 &970147843
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590898775360688112}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.79
 --- !u!1 &590898775460860301
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,10 +96,9 @@ GameObject:
   m_Component:
   - component: {fileID: 590898775460860302}
   - component: {fileID: 590898775460860303}
-  - component: {fileID: 590898775460860296}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CalaveraSprite
-  m_TagString: Untagged
+  m_TagString: Cabeza
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,19 +168,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &590898775460860296
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590898775460860301}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.5
