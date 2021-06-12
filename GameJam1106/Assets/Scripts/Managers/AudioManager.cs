@@ -2,25 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
 
-    public Image imageMuted;
-    public Image imageNotMuted;
-    
+    public Sprite imageMuted;
+    public Sprite imageNotMuted;
+
+    public Image soundIcon;
+
     public Slider volumeSlider;
-    
 
     private float volumeValue;
-    
 
-    void Start(){
+
+    void OnEnable(){
+
+        SceneManager.sceneLoaded += RechargeScene;
+
+    }
+
+    void OnDisable(){
+
+        SceneManager.sceneLoaded -= RechargeScene;
+
+    }
+
+    private void RechargeScene(Scene scene, LoadSceneMode mode){
 
         volumeSlider.value = PlayerPrefs.GetFloat("volumenAudio", 0.5f);
         AudioListener.volume = volumeSlider.value * volumeSlider.value;
-        //IsMuted();
+        IsMuted();
     
     }
 
@@ -31,7 +45,7 @@ public class AudioManager : MonoBehaviour
         volumeValue = value;
         PlayerPrefs.SetFloat("volumenAudio", volumeValue);
         AudioListener.volume = volumeSlider.value * volumeSlider.value;
-        //IsMuted();
+        IsMuted();
 
     }
 
@@ -40,13 +54,11 @@ public class AudioManager : MonoBehaviour
 
         if(volumeValue == 0){
 
-            imageMuted.enabled = true;
-            imageNotMuted.enabled = false;
+            soundIcon.sprite = imageMuted;
 
         }else{
 
-            imageMuted.enabled = false;
-            imageNotMuted.enabled = true;
+            soundIcon.sprite = imageNotMuted;
 
         }
 
