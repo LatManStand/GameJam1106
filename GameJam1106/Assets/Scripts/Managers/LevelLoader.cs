@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+
+
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
