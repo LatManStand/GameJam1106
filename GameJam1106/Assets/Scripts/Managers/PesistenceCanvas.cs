@@ -8,11 +8,6 @@ public class PesistenceCanvas : MonoBehaviour{
 
     public static PesistenceCanvas instance;
 
-    public Slider volumeSlider;
-    private float volumeValue;
-
-    
-
     private bool showingPausePanel = false;
 
     public int minIndex;
@@ -34,12 +29,7 @@ public class PesistenceCanvas : MonoBehaviour{
 
     }
 
-    void Start(){
-
-        volumeSlider.value = PlayerPrefs.GetFloat("volumenAudio", 0.5f);
-        AudioListener.volume = volumeSlider.value * volumeSlider.value;
-
-    }
+   
 
 
     void Update()
@@ -48,15 +38,9 @@ public class PesistenceCanvas : MonoBehaviour{
         if (Input.GetKeyDown(KeyCode.Escape))
         {
 
-             
-
-
             if (SceneManager.GetActiveScene().buildIndex >= minIndex){
                 OpenOptionsInGame();
             }
-
-           
-
 
         }
 
@@ -73,16 +57,7 @@ public class PesistenceCanvas : MonoBehaviour{
             Time.timeScale = 0;
 
         }
-        else
-        {
-
-            pauseMenuPanel.SetActive(false);
-            showingPausePanel = false;
-
-            Time.timeScale = 1;
-
-        }
-
+        
 
     }
 
@@ -97,12 +72,38 @@ public class PesistenceCanvas : MonoBehaviour{
 
     }
 
-    public void ChangeVolumeSlider(float value){
+    public void ResumeButton(){
 
-        volumeValue = value;
-        PlayerPrefs.SetFloat("volumenAudio", volumeValue);
-        AudioListener.volume = volumeSlider.value * volumeSlider.value;
-        
+        if(showingPausePanel){
+
+            pauseMenuPanel.SetActive(false);
+            showingPausePanel = false;
+
+            Time.timeScale = 1;
+
+        }
+
+
+
     }
+
+
+    public void MainMenuButton()
+    {
+        SceneManager.LoadScene("LevelSelector");
+
+        if (showingPausePanel){
+
+            pauseMenuPanel.SetActive(false);
+            showingPausePanel = false;
+
+            Time.timeScale = 1;
+
+        }
+
+
+    }
+
+
 
 }
