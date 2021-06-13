@@ -13,6 +13,14 @@ public class KillerController : MonoBehaviour{
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
 
+        }else if (collision.CompareTag("Cuerpo")){
+
+            if (collision.GetComponent<CuerpoController>().tengoCabeza){
+
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            }
+
         }
 
 
