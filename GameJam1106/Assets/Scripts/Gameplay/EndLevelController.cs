@@ -20,7 +20,8 @@ public class EndLevelController : MonoBehaviour{
 
     void OnTriggerEnter2D(Collider2D collision){
 
-        if (collision.CompareTag("Cabeza")){
+        if (collision.CompareTag("Cabeza") || collision.CompareTag("Cuerpo"))
+        {
 
             if (!(progressManager.levelsCompleted[currentLevel-1])){
 
