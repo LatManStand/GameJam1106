@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219bf25c1f46dbf48bda4211aa5cce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocidadAndar: 3
   maxVelocidadAngular: 300
   aceleracionAngular: 1500
   tengoCabeza: 0
