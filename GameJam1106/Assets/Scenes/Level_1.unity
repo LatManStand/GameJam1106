@@ -1662,14 +1662,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8902028912714509184, guid: e8f73da96e73799448fba0c36af3a04c, type: 3}
-      propertyPath: m_Size.y
-      value: 0.8240342
-      objectReference: {fileID: 0}
-    - target: {fileID: 8902028912714509184, guid: e8f73da96e73799448fba0c36af3a04c, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.08798289
-      objectReference: {fileID: 0}
     - target: {fileID: 8902028912714509185, guid: e8f73da96e73799448fba0c36af3a04c, type: 3}
       propertyPath: m_Name
       value: button
@@ -1721,10 +1713,6 @@ PrefabInstance:
     - target: {fileID: 8902028912714509190, guid: e8f73da96e73799448fba0c36af3a04c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8902028912714509191, guid: e8f73da96e73799448fba0c36af3a04c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8f73da96e73799448fba0c36af3a04c, type: 3}

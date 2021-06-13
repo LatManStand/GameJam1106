@@ -20,6 +20,8 @@ public class TakeItemsController : MonoBehaviour{
 
     public Sprite emptyItemSprite;
 
+    public AudioSource biteSound;
+
     void Update(){
 
         if (Input.GetKeyDown(KeyCode.E)){
@@ -39,15 +41,9 @@ public class TakeItemsController : MonoBehaviour{
 
     }
 
-    public void GetItemInfo(){
-
-
-
-    }
-
-
     private void TakeItem(){
 
+        biteSound.Play();
         holdingItem = item.gameObject;
         item.gameObject.SetActive(false);
         itemImage.sprite = actualItem;
