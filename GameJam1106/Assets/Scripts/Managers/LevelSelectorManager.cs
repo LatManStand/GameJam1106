@@ -10,6 +10,7 @@ public class LevelSelectorManager : MonoBehaviour
 
     public ProgressManager progressManager;
 
+    public GameObject gameCompletedImage;
 
     void Awake(){
 
@@ -31,8 +32,8 @@ public class LevelSelectorManager : MonoBehaviour
 
 
         }else{
-        
-        
+
+            gameCompletedImage.SetActive(true);
         
         }
 
