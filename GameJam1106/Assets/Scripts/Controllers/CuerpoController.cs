@@ -24,6 +24,8 @@ public class CuerpoController : MonoBehaviour
     private Animator piernasAnim;
     private GameObject brazo;
 
+    private GroundCheck groundCheck;
+
     public float fuerzaLanzarCabeza;
 
     public GameObject punto1;
@@ -42,6 +44,27 @@ public class CuerpoController : MonoBehaviour
         TocaElSuelo(punto2);
     }
 
+    void Update()
+    {
+        if (tengoCabeza)
+        {
+            if (Input.GetAxis("Jump") > 0.1f)
+            {
+                LanzarCabeza();
+            }
+            if (tengoBrazo)
+            {
+                ApuntarBrazo();
+            }
+            if (tengoPierna && Input.GetKey(KeyCode.Q))// && groundCheck.grounds > 0)
+            {
+                piernasRB.velocity = Vector2.up * fuerzaSalto;
+                //piernasRB.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+                //piernasRB.AddForce(piernas.transform.position + Vector3.up * fuerzaSalto);
+            }
+        }
+    }
+
 
     void FixedUpdate()
     {
@@ -55,16 +78,9 @@ public class CuerpoController : MonoBehaviour
             {
                 Andar();
             }
-            if (Input.GetAxis("Jump") > 0.1f)
-            {
-                LanzarCabeza();
-            }
-            if (tengoBrazo)
-            {
-                ApuntarBrazo();
-            }
         }
     }
+
     private void Rotar()
     {
         if (puntoQueRota == 1)
@@ -99,24 +115,21 @@ public class CuerpoController : MonoBehaviour
 
     private void Andar()
     {
-        piernasRB.MovePosition(piernas.transform.position + Vector3.right * Input.GetAxis("Horizontal") * velocidadAndar * Time.deltaTime);
-        piernasAnim.SetFloat("Velocidad", Mathf.Abs(Input.GetAxis("Horizontal")));
-        if (Input.GetAxis("Vertical") > 0.1f)
+        if (Input.GetAxis("Horizontal") > 0.1f)
         {
-            piernasRB.MovePosition(piernas.transform.position + Vector3.up * Input.GetAxis("Horizontal") * fuerzaSalto);
+
+            piernasRB.velocity += Vector2.right * velocidadAndar;
         }
+        else if (Input.GetAxis("Horizontal") < -0.1f)
+        {
+            piernasRB.velocity += Vector2.left * velocidadAndar;
+        }
+        piernasAnim.SetFloat("Velocidad", Mathf.Abs(Input.GetAxis("Horizontal")));
+
     }
 
     private void ApuntarBrazo()
     {
-        /*
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        {
-            brazo.transform.LookAt(hit.point);
-        }*/
-
         var mouse = Input.mousePosition;
         var mouseScreenPosition = Camera.main.ScreenToWorldPoint(mouse);
 
@@ -205,6 +218,7 @@ public class CuerpoController : MonoBehaviour
             punto1.transform.SetParent(transform.GetChild(0));
             punto2.transform.SetParent(transform.GetChild(0));
 
+            groundCheck = piernas.transform.GetChild(3).GetComponent<GroundCheck>();
             tengoPierna = true;
 
             transform.DOMove(piernas.transform.GetChild(2).position, 0.3f).Play();
