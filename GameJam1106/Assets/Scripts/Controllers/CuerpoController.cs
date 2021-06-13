@@ -117,12 +117,12 @@ public class CuerpoController : MonoBehaviour
 
     private void Andar()
     {
+        piernasRB.velocity = new Vector2(velocidadAndar * horizontal, piernasRB.velocity.y);/*
         if (horizontal > 0.1f)
         {
             //piernasRB.AddForce(Vector2.right * velocidadAndar,ForceMode2D.Impulse);
             //piernasRB.velocity += Vector2.right * velocidadAndar;
-            piernasRB.velocity += Vector2.right * velocidadAndar;
-            piernasRB.velocity = new Vector2(velocidadAndar, piernasRB.velocity.y);
+            //piernasRB.velocity += Vector2.right * velocidadAndar;
         }
         else if (horizontal < -0.1f)
         {
@@ -130,7 +130,7 @@ public class CuerpoController : MonoBehaviour
             //piernasRB.velocity += Vector2.left * velocidadAndar;
             piernasRB.velocity = new Vector2(-velocidadAndar, piernasRB.velocity.y);
         }
-
+        */
         if (vertical > 0.1f && groundCheck.grounds > 0)
         {
             piernasRB.velocity += Vector2.up * fuerzaSalto;
