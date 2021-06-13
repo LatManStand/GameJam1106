@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RockController : MonoBehaviour{
+public class ItemController : MonoBehaviour{
 
 
     public CalaveraController player;
@@ -25,7 +25,7 @@ public class RockController : MonoBehaviour{
         if (collision.CompareTag("Cabeza")){
 
            
-            taker.rock = GetComponent<RockController>();
+            taker.item = GetComponent<ItemController>();
 
             taker.playerInside = true;
 
@@ -42,7 +42,7 @@ public class RockController : MonoBehaviour{
 
         if (collision.CompareTag("Cabeza")){
 
-            taker.rock = null;
+            taker.item = null;
 
             taker.playerInside = false;
 

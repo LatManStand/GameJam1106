@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TakeItemsController : MonoBehaviour{
 
     public CalaveraController player;
-    public RockController rock;
+    public ItemController item;
 
     private GameObject holdingItem;
 
@@ -26,11 +26,11 @@ public class TakeItemsController : MonoBehaviour{
 
             if (playerInside && !haveItem){
 
-                TakeRock();
+                TakeItem();
 
             }else if (haveItem){
 
-                DropRock();
+                DropItem();
 
             }
             
@@ -46,10 +46,10 @@ public class TakeItemsController : MonoBehaviour{
     }
 
 
-    private void TakeRock(){
+    private void TakeItem(){
 
-        holdingItem = rock.gameObject;
-        rock.gameObject.SetActive(false);
+        holdingItem = item.gameObject;
+        item.gameObject.SetActive(false);
         itemImage.sprite = actualItem;
         playerInside = false;
         haveItem = true;
@@ -57,7 +57,7 @@ public class TakeItemsController : MonoBehaviour{
     }
 
 
-    private void DropRock(){
+    private void DropItem(){
 
         holdingItem.transform.position = player.transform.position;
         holdingItem.SetActive(true);
