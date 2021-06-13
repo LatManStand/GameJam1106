@@ -1461,10 +1461,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelCompleted_canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3131595380378990518, guid: 69d227eaaeba52f439c1337832533c74, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3131595380714732025, guid: 69d227eaaeba52f439c1337832533c74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1017437925}
+    - target: {fileID: 3131595381597374321, guid: 69d227eaaeba52f439c1337832533c74, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000461883802521574, guid: 69d227eaaeba52f439c1337832533c74, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
