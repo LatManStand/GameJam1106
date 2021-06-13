@@ -103,19 +103,28 @@ public class CuerpoController : MonoBehaviour
         piernasAnim.SetFloat("Velocidad", Mathf.Abs(Input.GetAxis("Horizontal")));
         if (Input.GetAxis("Vertical") > 0.1f)
         {
-            piernasRB.MovePosition(Vector2.up * Input.GetAxis("Horizontal") * fuerzaSalto);
+            piernasRB.MovePosition(piernas.transform.position + Vector3.up * Input.GetAxis("Horizontal") * fuerzaSalto);
         }
     }
 
     private void ApuntarBrazo()
     {
+        /*
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-
             brazo.transform.LookAt(hit.point);
-        }
+        }*/
+
+        var mouse = Input.mousePosition;
+        var mouseScreenPosition = Camera.main.ScreenToWorldPoint(mouse);
+
+        var angleRad = Mathf.Atan2(mouseScreenPosition.y - transform.position.y, mouseScreenPosition.x - transform.position.x);
+
+        var angleDeg = (180 / Mathf.PI) * angleRad;
+
+        brazo.transform.rotation = Quaternion.Euler(0, 0, angleDeg - 90);
     }
 
     private void LanzarCabeza()
@@ -124,7 +133,14 @@ public class CuerpoController : MonoBehaviour
         cabeza.transform.SetParent(null);
         cabeza.GetComponent<CalaveraController>().enabled = true;
         cabeza.GetComponent<Rigidbody2D>().simulated = true;
-        cabeza.GetComponent<Rigidbody2D>().AddForce((cabeza.transform.position - transform.position) * fuerzaLanzarCabeza);
+        if (!tengoBrazo)
+        {
+            cabeza.GetComponent<Rigidbody2D>().AddForce((cabeza.transform.position - transform.position) * fuerzaLanzarCabeza);
+        }
+        else
+        {
+            cabeza.GetComponent<Rigidbody2D>().AddForce((brazo.transform.GetChild(0).GetChild(0).position - transform.position).normalized * fuerzaLanzarCabeza * 3f);
+        }
         cabeza.layer = 12;
         ultimoCogido = Time.timeSinceLevelLoad;
     }
@@ -189,18 +205,18 @@ public class CuerpoController : MonoBehaviour
             punto1.transform.SetParent(transform.GetChild(0));
             punto2.transform.SetParent(transform.GetChild(0));
 
-            transform.SetParent(piernas.transform);
             tengoPierna = true;
 
             transform.DOMove(piernas.transform.GetChild(2).position, 0.3f).Play();
+            transform.SetParent(piernas.transform);
             transform.DOLocalRotate(Vector3.zero, 0.3f).Play();
         }
         else if (tengoCabeza && !tengoBrazo && collision.CompareTag("Brazo") && ultimoCogido + cooldownCogido < Time.timeSinceLevelLoad)
         {
-            brazo = collision.gameObject.transform.gameObject;
+            brazo = collision.gameObject.transform.root.gameObject;
+            brazo.transform.root.DOMove(punto1.transform.position, 0.3f).Play();
             brazo.transform.root.SetParent(punto1.transform);
             tengoBrazo = true;
-            brazo.transform.DOMove(punto1.transform.position, 0.3f).Play();
         }
     }
 
