@@ -1132,6 +1132,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock
       objectReference: {fileID: 0}
+    - target: {fileID: 252436598471687241, guid: f7d969ef013601e4fad02265824356ed, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     - target: {fileID: 252436598471687244, guid: f7d969ef013601e4fad02265824356ed, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -1184,6 +1188,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 229004125}
+    - target: {fileID: 252436599611889190, guid: f7d969ef013601e4fad02265824356ed, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d969ef013601e4fad02265824356ed, type: 3}
 --- !u!1001 &1753105634585655943
