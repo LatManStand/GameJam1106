@@ -14,10 +14,12 @@ public class CalaveraController : MonoBehaviour
     private Rigidbody2D rb2d;
 
     public Extremidad llevada;
+    public float fuerza;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        ultimaCogida = Time.timeSinceLevelLoad;
     }
 
 
@@ -37,7 +39,7 @@ public class CalaveraController : MonoBehaviour
         {
             if (Input.GetAxis("Jump") > 0.1f)
             {
-
+                llevada.transform.SetParent(null);
             }
         }
     }

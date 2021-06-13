@@ -67,9 +67,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcb94840f0acb2409fda5a1e3af3fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocidad: 250
+  maxVelocidadAngular: 250
   momentoAngular: 0
-  aceleracion: 300
+  aceleracionAngular: 300
+  ultimaCogida: 0
+  cogerCooldown: 0
+  llevada: {fileID: 0}
+  fuerza: 0
 --- !u!58 &970147843
 CircleCollider2D:
   m_ObjectHideFlags: 0

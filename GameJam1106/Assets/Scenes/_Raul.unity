@@ -213,6 +213,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 590898775360688108, guid: 9f88726b55e612242b4b86204c9e93de, type: 3}
+      propertyPath: aceleracionAngular
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 590898775360688108, guid: 9f88726b55e612242b4b86204c9e93de, type: 3}
+      propertyPath: maxVelocidadAngular
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 590898775360688112, guid: 9f88726b55e612242b4b86204c9e93de, type: 3}
       propertyPath: m_Name
       value: ControllerCalavera (1)
@@ -429,7 +437,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 10.8}
+    oldSize: {x: 2, y: 7.2}
     newSize: {x: 19.2, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -701,7 +709,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 10.8}
+    oldSize: {x: 2, y: 7.2}
     newSize: {x: 19.2, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -989,6 +997,18 @@ PrefabInstance:
     - target: {fileID: 2424748613765328476, guid: 196ec24aada2030408fe34a683ddf233, type: 3}
       propertyPath: m_Name
       value: ControllerCuerpo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824793813369818566, guid: 196ec24aada2030408fe34a683ddf233, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601164874391131122, guid: 196ec24aada2030408fe34a683ddf233, type: 3}
+      propertyPath: aceleracionAngular
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601164874391131122, guid: 196ec24aada2030408fe34a683ddf233, type: 3}
+      propertyPath: maxVelocidadAngular
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 196ec24aada2030408fe34a683ddf233, type: 3}
