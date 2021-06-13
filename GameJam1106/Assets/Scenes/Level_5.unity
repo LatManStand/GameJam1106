@@ -249,7 +249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5317350989880918854, guid: 7a6b3a90ef56eff48b34a83e7a0df967, type: 3}
       propertyPath: currentLevel
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5317350989880918854, guid: 7a6b3a90ef56eff48b34a83e7a0df967, type: 3}
       propertyPath: levelCompletedPanel
@@ -967,7 +967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3131595380378990506, guid: 69d227eaaeba52f439c1337832533c74, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 3131595380378990506, guid: 69d227eaaeba52f439c1337832533c74, type: 3}
       propertyPath: m_AnchorMax.x
