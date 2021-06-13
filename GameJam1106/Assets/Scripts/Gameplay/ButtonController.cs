@@ -11,6 +11,7 @@ public class ButtonController : MonoBehaviour{
     public Sprite buttonOn;
     public Sprite buttonOff;
 
+    public AudioSource buttonSound;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,6 +19,7 @@ public class ButtonController : MonoBehaviour{
 
             door.OpenDoor();
             GetComponent<SpriteRenderer>().sprite = buttonOn;
+            buttonSound.Play();
 
         }
         
