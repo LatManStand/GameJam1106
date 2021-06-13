@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CuerpoController : MonoBehaviour
 {
+    public float velocidadAndar;
     public float maxVelocidadAngular;
     public float aceleracionAngular;
 
@@ -16,6 +17,8 @@ public class CuerpoController : MonoBehaviour
     public float cooldownCogido = 1f;
     public float ultimoCogido = 0f;
     private GameObject cabeza;
+    private GameObject piernas;
+    private Animator piernasAnim;
 
     public float fuerzaLanzarCabeza;
 
@@ -89,7 +92,8 @@ public class CuerpoController : MonoBehaviour
 
     private void Andar()
     {
-
+        transform.parent.Translate(Vector2.right * Input.GetAxis("Horizontal") * velocidadAndar * Time.deltaTime, Space.World);
+        piernasAnim.SetFloat("Velocidad", Input.GetAxis("Horizontal"));
     }
 
     private void LanzarCabeza()
@@ -148,6 +152,20 @@ public class CuerpoController : MonoBehaviour
             cabeza.GetComponent<Rigidbody2D>().simulated = false;
             cabeza.transform.DOMove(transform.GetChild(1).position, 0.3f).Play();
             cabeza.transform.DOLocalRotate(Vector3.zero, 0.3f).Play();
+        }
+        else if (collision.CompareTag("Piernas"))
+        {
+            Invoke(nameof(ControllerCD), 0.3f);
+            piernas = collision.gameObject.transform.gameObject;
+            rb1.angularVelocity = 0f;
+            rb1.simulated = false;
+            rb2.angularVelocity = 0f;
+            rb2.simulated = false;
+            punto1.transform.SetParent(transform.GetChild(0));
+            punto2.transform.SetParent(transform.GetChild(0));
+
+            transform.DOMove(piernas.transform.GetChild(2).position, 0.3f).Play();
+            transform.DOLocalRotate(Vector3.zero, 0.3f).Play();
         }
     }
 
