@@ -24,7 +24,8 @@ public class ItemController : MonoBehaviour{
 
         if (collision.CompareTag("Cabeza")){
 
-           
+            Debug.Log("entra");
+            
             taker.item = GetComponent<ItemController>();
 
             taker.playerInside = true;
