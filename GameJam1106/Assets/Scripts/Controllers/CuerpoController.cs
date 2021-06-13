@@ -37,6 +37,10 @@ public class CuerpoController : MonoBehaviour
 
     [SerializeField] private int puntoQueRota;
 
+    public float horizontal;
+    public float vertical;
+    public Vector2 velocidad;
+
     private void Awake()
     {
         rb1 = punto1.GetComponent<Rigidbody2D>();
@@ -48,21 +52,19 @@ public class CuerpoController : MonoBehaviour
     {
         if (tengoCabeza)
         {
-            if (Input.GetAxis("Jump") > 0.1f)
-            {
-                LanzarCabeza();
-            }
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
             if (tengoBrazo)
             {
                 ApuntarBrazo();
             }
-            if (tengoPierna && Input.GetKey(KeyCode.Q))// && groundCheck.grounds > 0)
+            if (Input.GetAxis("Jump") > 0.1f)
             {
-                piernasRB.velocity = Vector2.up * fuerzaSalto;
-                //piernasRB.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
-                //piernasRB.AddForce(piernas.transform.position + Vector3.up * fuerzaSalto);
+                LanzarCabeza();
             }
         }
+        if (tengoPierna)
+            velocidad = piernasRB.velocity;
     }
 
 
@@ -85,12 +87,12 @@ public class CuerpoController : MonoBehaviour
     {
         if (puntoQueRota == 1)
         {
-            if (Input.GetAxis("Horizontal") > 0.1f)
+            if (horizontal > 0.1f)
             {
                 rb1.angularVelocity -= aceleracionAngular * Time.deltaTime;
             }
 
-            if (Input.GetAxis("Horizontal") < -0.1f)
+            if (horizontal < -0.1f)
             {
                 rb1.angularVelocity += aceleracionAngular * Time.deltaTime;
             }
@@ -99,12 +101,12 @@ public class CuerpoController : MonoBehaviour
 
         else if (puntoQueRota == 2)
         {
-            if (Input.GetAxis("Horizontal") > 0.1f)
+            if (horizontal > 0.1f)
             {
                 rb2.angularVelocity -= aceleracionAngular * Time.deltaTime;
             }
 
-            if (Input.GetAxis("Horizontal") < -0.1f)
+            if (horizontal < -0.1f)
             {
                 rb2.angularVelocity += aceleracionAngular * Time.deltaTime;
             }
@@ -115,16 +117,27 @@ public class CuerpoController : MonoBehaviour
 
     private void Andar()
     {
-        if (Input.GetAxis("Horizontal") > 0.1f)
+        if (horizontal > 0.1f)
         {
-
+            //piernasRB.AddForce(Vector2.right * velocidadAndar,ForceMode2D.Impulse);
+            //piernasRB.velocity += Vector2.right * velocidadAndar;
             piernasRB.velocity += Vector2.right * velocidadAndar;
+            piernasRB.velocity = new Vector2(velocidadAndar, piernasRB.velocity.y);
         }
-        else if (Input.GetAxis("Horizontal") < -0.1f)
+        else if (horizontal < -0.1f)
         {
-            piernasRB.velocity += Vector2.left * velocidadAndar;
+            //piernasRB.AddForce(Vector2.left * velocidadAndar,ForceMode2D.Impulse);
+            //piernasRB.velocity += Vector2.left * velocidadAndar;
+            piernasRB.velocity = new Vector2(-velocidadAndar, piernasRB.velocity.y);
         }
-        piernasAnim.SetFloat("Velocidad", Mathf.Abs(Input.GetAxis("Horizontal")));
+
+        if (vertical > 0.1f && groundCheck.grounds > 0)
+        {
+            piernasRB.velocity += Vector2.up * fuerzaSalto;
+            //piernasRB.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+            //piernasRB.AddForce(piernas.transform.position + Vector3.up * fuerzaSalto);
+        }
+        piernasAnim.SetFloat("Velocidad", Mathf.Abs(horizontal));
 
     }
 
@@ -193,6 +206,7 @@ public class CuerpoController : MonoBehaviour
     {
         if (collision.CompareTag("Cabeza") && ultimoCogido + cooldownCogido < Time.timeSinceLevelLoad)
         {
+            tengoCabeza = false;
             Invoke(nameof(ControllerCD), 0.3f);
             cabeza = collision.gameObject.transform.gameObject;
             cabeza.transform.SetParent(transform);
@@ -208,27 +222,32 @@ public class CuerpoController : MonoBehaviour
         {
             tengoCabeza = false;
             Invoke(nameof(ControllerCD), 0.3f);
+
             piernas = collision.gameObject.transform.gameObject;
+            transform.DOMove(piernas.transform.GetChild(2).position, 0.3f).Play();
+            transform.SetParent(null);
+            punto1.transform.SetParent(transform.GetChild(0));
+            punto2.transform.SetParent(transform.GetChild(0));
+            transform.SetParent(piernas.transform);
+
+
+
             piernasAnim = piernas.GetComponent<Animator>();
             piernasRB = piernas.GetComponent<Rigidbody2D>();
             rb1.angularVelocity = 0f;
             rb1.simulated = false;
             rb2.angularVelocity = 0f;
             rb2.simulated = false;
-            punto1.transform.SetParent(transform.GetChild(0));
-            punto2.transform.SetParent(transform.GetChild(0));
 
             groundCheck = piernas.transform.GetChild(3).GetComponent<GroundCheck>();
             tengoPierna = true;
 
-            transform.DOMove(piernas.transform.GetChild(2).position, 0.3f).Play();
-            transform.SetParent(piernas.transform);
             transform.DOLocalRotate(Vector3.zero, 0.3f).Play();
         }
         else if (tengoCabeza && !tengoBrazo && collision.CompareTag("Brazo") && ultimoCogido + cooldownCogido < Time.timeSinceLevelLoad)
         {
             brazo = collision.gameObject.transform.root.gameObject;
-            brazo.transform.root.DOMove(punto1.transform.position, 0.3f).Play();
+            brazo.transform.root.DOMove(punto1.transform.position, 0.1f).Play();
             brazo.transform.root.SetParent(punto1.transform);
             tengoBrazo = true;
         }
