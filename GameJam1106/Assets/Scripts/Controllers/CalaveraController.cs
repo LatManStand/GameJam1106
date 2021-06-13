@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class CalaveraController : MonoBehaviour
 {
-    public float maxVelocidad;
+    public float maxVelocidadAngular;
     public float momentoAngular;
-    public float aceleracion = 2f;
+    public float aceleracionAngular = 2f;
+
+    public float ultimaCogida;
+    public float cogerCooldown;
 
     private Rigidbody2D rb2d;
+
+    public Extremidad llevada;
 
     private void Awake()
     {
@@ -18,15 +23,22 @@ public class CalaveraController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetAxis("Horizontal") > 0.1f)
         {
-            rb2d.angularVelocity -= aceleracion * Time.deltaTime;
+            rb2d.angularVelocity -= aceleracionAngular * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetAxis("Horizontal") < -0.1f)
         {
-            rb2d.angularVelocity += aceleracion * Time.deltaTime;
+            rb2d.angularVelocity += aceleracionAngular * Time.deltaTime;
         }
-        rb2d.angularVelocity = Mathf.Clamp(rb2d.angularVelocity, -maxVelocidad, maxVelocidad);
+        rb2d.angularVelocity = Mathf.Clamp(rb2d.angularVelocity, -maxVelocidadAngular, maxVelocidadAngular);
         momentoAngular = rb2d.angularVelocity;
+        if (llevada != null)
+        {
+            if (Input.GetAxis("Jump") > 0.1f)
+            {
+
+            }
+        }
     }
 }
