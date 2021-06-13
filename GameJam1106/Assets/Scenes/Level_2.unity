@@ -758,6 +758,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelCompleted_canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3131595381597374321, guid: 69d227eaaeba52f439c1337832533c74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69d227eaaeba52f439c1337832533c74, type: 3}
 --- !u!1 &554750220 stripped
@@ -1019,7 +1023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782630362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.578787, y: -6.27, z: 0}
+  m_LocalPosition: {x: 7.67, y: -1.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
