@@ -46,10 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219bf25c1f46dbf48bda4211aa5cce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocidad: 500
-  aceleracion: 1500
-  cooldownCabeza: 1
+  maxVelocidadAngular: 300
+  aceleracionAngular: 1500
   tengoCabeza: 0
+  tengoBrazo: 0
+  tengoPierna: 0
+  cooldownCogido: 1
+  ultimoCogido: 0
   fuerzaLanzarCabeza: 300
   punto1: {fileID: 8792335069384983305}
   punto2: {fileID: 4163030264698565169}
