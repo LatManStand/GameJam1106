@@ -17,10 +17,12 @@ public class CuerpoController : MonoBehaviour
 
     public float cooldownCogido = 1f;
     public float ultimoCogido = 0f;
+
     private GameObject cabeza;
     private GameObject piernas;
     private Rigidbody2D piernasRB;
     private Animator piernasAnim;
+    private GameObject brazo;
 
     public float fuerzaLanzarCabeza;
 
@@ -57,9 +59,12 @@ public class CuerpoController : MonoBehaviour
             {
                 LanzarCabeza();
             }
+            if (tengoBrazo)
+            {
+                ApuntarBrazo();
+            }
         }
     }
-
     private void Rotar()
     {
         if (puntoQueRota == 1)
@@ -99,6 +104,17 @@ public class CuerpoController : MonoBehaviour
         if (Input.GetAxis("Vertical") > 0.1f)
         {
             piernasRB.MovePosition(Vector2.up * Input.GetAxis("Horizontal") * fuerzaSalto);
+        }
+    }
+
+    private void ApuntarBrazo()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+
+            brazo.transform.LookAt(hit.point);
         }
     }
 
@@ -159,7 +175,7 @@ public class CuerpoController : MonoBehaviour
             cabeza.transform.DOMove(transform.GetChild(1).position, 0.3f).Play();
             cabeza.transform.DOLocalRotate(Vector3.zero, 0.3f).Play();
         }
-        else if (tengoCabeza && collision.CompareTag("Piernas") && ultimoCogido + cooldownCogido < Time.timeSinceLevelLoad)
+        else if (tengoCabeza && !tengoPierna && collision.CompareTag("Piernas") && ultimoCogido + cooldownCogido < Time.timeSinceLevelLoad)
         {
             tengoCabeza = false;
             Invoke(nameof(ControllerCD), 0.3f);
@@ -179,10 +195,18 @@ public class CuerpoController : MonoBehaviour
             transform.DOMove(piernas.transform.GetChild(2).position, 0.3f).Play();
             transform.DOLocalRotate(Vector3.zero, 0.3f).Play();
         }
+        else if (tengoCabeza && !tengoBrazo && collision.CompareTag("Brazo") && ultimoCogido + cooldownCogido < Time.timeSinceLevelLoad)
+        {
+            brazo = collision.gameObject.transform.gameObject;
+            brazo.transform.root.SetParent(punto1.transform);
+            tengoBrazo = true;
+            brazo.transform.DOMove(punto1.transform.position, 0.3f).Play();
+        }
     }
 
     private void ControllerCD()
     {
         tengoCabeza = !tengoCabeza;
     }
+
 }

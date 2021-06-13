@@ -11,6 +11,7 @@ TagManager:
   - Rock
   - Piernas
   - Item
+  - Brazo
   layers:
   - Default
   - TransparentFX
