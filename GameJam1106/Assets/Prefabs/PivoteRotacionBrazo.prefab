@@ -74,6 +74,7 @@ MonoBehaviour:
   player: {fileID: 0}
   taker: {fileID: 0}
   itemSprite: {fileID: 21300000, guid: 2eea69efd2fb4c24d8ca6853ec4046da, type: 3}
+  E: {fileID: 0}
 --- !u!1 &107693098355032642
 GameObject:
   m_ObjectHideFlags: 0
