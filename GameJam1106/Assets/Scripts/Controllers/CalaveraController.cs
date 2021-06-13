@@ -8,9 +8,6 @@ public class CalaveraController : MonoBehaviour
     public float momentoAngular;
     public float aceleracionAngular = 2f;
 
-    public float ultimaCogida;
-    public float cogerCooldown;
-
     private Rigidbody2D rb2d;
 
     public Extremidad llevada;
@@ -19,7 +16,6 @@ public class CalaveraController : MonoBehaviour
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        ultimaCogida = Time.timeSinceLevelLoad;
     }
 
 
@@ -35,12 +31,5 @@ public class CalaveraController : MonoBehaviour
         }
         rb2d.angularVelocity = Mathf.Clamp(rb2d.angularVelocity, -maxVelocidadAngular, maxVelocidadAngular);
         momentoAngular = rb2d.angularVelocity;
-        if (llevada != null)
-        {
-            if (Input.GetAxis("Jump") > 0.1f)
-            {
-                llevada.transform.SetParent(null);
-            }
-        }
     }
 }
