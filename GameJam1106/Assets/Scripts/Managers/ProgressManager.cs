@@ -31,7 +31,7 @@ public class ProgressManager : MonoBehaviour {
 
     void Start(){
 
-        levelsCompleted = new bool[10];
+        levelsCompleted = new bool[6];
 
         for(int i = 0; i < levelsCompleted.Length; i++){
 
