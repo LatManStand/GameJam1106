@@ -9,6 +9,7 @@ TagManager:
   - Cabeza
   - Cuerpo
   - Rock
+  - Piernas
   layers:
   - Default
   - TransparentFX
