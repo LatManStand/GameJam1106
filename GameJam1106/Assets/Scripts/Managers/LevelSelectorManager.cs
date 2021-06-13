@@ -20,7 +20,7 @@ public class LevelSelectorManager : MonoBehaviour
 
     void Start(){
 
-        if(progressManager.lastLevelCompleted < 10){
+        if(progressManager.lastLevelCompleted < 6){
 
             for (int i = 0; i < progressManager.lastLevelCompleted; i++)
             {
