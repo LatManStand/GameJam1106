@@ -249,7 +249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5317350989880918854, guid: 7a6b3a90ef56eff48b34a83e7a0df967, type: 3}
       propertyPath: currentLevel
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5317350989880918854, guid: 7a6b3a90ef56eff48b34a83e7a0df967, type: 3}
       propertyPath: levelCompletedPanel
