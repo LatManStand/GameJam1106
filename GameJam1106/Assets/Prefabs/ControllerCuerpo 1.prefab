@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5601164874391131122}
   - component: {fileID: 1250459091}
   m_Layer: 10
-  m_Name: ControllerCuerpo
+  m_Name: ControllerCuerpo 1
   m_TagString: Cuerpo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219bf25c1f46dbf48bda4211aa5cce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadAndar: 10
-  fuerzaSalto: 0
+  velocidadAndar: 15
+  fuerzaSalto: 20
   maxVelocidadAngular: 150
   aceleracionAngular: 1500
   tengoCabeza: 0
@@ -59,6 +59,9 @@ MonoBehaviour:
   punto1: {fileID: 8792335069384983305}
   punto2: {fileID: 4163030264698565169}
   puntoQueRota: 0
+  horizontal: 0
+  vertical: 0
+  velocidad: {x: 0, y: 0}
 --- !u!70 &1250459091
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

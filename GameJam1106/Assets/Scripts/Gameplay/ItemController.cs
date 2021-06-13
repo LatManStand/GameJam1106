@@ -12,6 +12,8 @@ public class ItemController : MonoBehaviour{
 
     public Sprite itemSprite;
 
+    public GameObject E;
+
 
     void Awake(){
 
@@ -32,7 +34,7 @@ public class ItemController : MonoBehaviour{
 
             taker.actualItem = itemSprite;
 
-            GetComponent<SpriteRenderer>().color = Color.yellow;
+            E.SetActive(true);
 
         }
 
@@ -47,7 +49,7 @@ public class ItemController : MonoBehaviour{
 
             taker.playerInside = false;
 
-            GetComponent<SpriteRenderer>().color = Color.white;
+            E.SetActive(false);
 
         }
 
