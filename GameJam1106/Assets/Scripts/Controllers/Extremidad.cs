@@ -30,18 +30,20 @@ public class Extremidad : MonoBehaviour
         else if (collision.CompareTag("Cabeza"))
         {
             cabeza = collision.GetComponent<CalaveraController>();
-            if (cabeza.ultimaCogida + cabeza.cogerCooldown < Time.timeSinceLevelLoad)
-            {
-                transform.SetParent(encajaCabeza);
-                transform.DOMove(encajaCabeza.position, 0.3f);
-                transform.DOLocalRotate(Vector3.zero, 0.3f);
-                cabeza.llevada = this;
-                TriggerEnter();
+            //if (cabeza.ultimaCogida + cabeza.cogerCooldown < Time.timeSinceLevelLoad)
+            //{
+            transform.SetParent(encajaCabeza);
+            transform.DOMove(encajaCabeza.position, 0.3f);
+            transform.DOLocalRotate(Vector3.zero, 0.3f);
+            cabeza.llevada = this;
+            TriggerEnter();
+            /*
             }
             else
             {
                 cabeza = null;
             }
+            */
         }
     }
 

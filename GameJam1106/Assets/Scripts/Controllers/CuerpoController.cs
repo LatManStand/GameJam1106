@@ -99,14 +99,13 @@ public class CuerpoController : MonoBehaviour
         cabeza.GetComponent<CalaveraController>().enabled = true;
         cabeza.GetComponent<Rigidbody2D>().simulated = true;
         cabeza.GetComponent<Rigidbody2D>().AddForce((cabeza.transform.position - transform.position) * fuerzaLanzarCabeza);
-        cabeza.layer = 11;
+        cabeza.layer = 12;
         ultimoCogido = Time.timeSinceLevelLoad;
     }
 
 
     public void TocaElSuelo(GameObject punto)
     {
-        Debug.Log("Ha tocado " + punto.name);
         if (punto == punto1)
         {
             punto1.transform.SetParent(null);

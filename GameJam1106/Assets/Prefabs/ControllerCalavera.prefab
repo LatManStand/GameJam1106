@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 590898775360688113}
   - component: {fileID: 590898775360688108}
   - component: {fileID: 970147843}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: ControllerCalavera
   m_TagString: Cabeza
   m_Icon: {fileID: 0}
@@ -70,8 +70,6 @@ MonoBehaviour:
   maxVelocidadAngular: 250
   momentoAngular: 0
   aceleracionAngular: 300
-  ultimaCogida: 0
-  cogerCooldown: 0
   llevada: {fileID: 0}
   fuerza: 0
 --- !u!58 &970147843
@@ -100,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 590898775460860302}
   - component: {fileID: 590898775460860303}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: CalaveraSprite
   m_TagString: Cabeza
   m_Icon: {fileID: 0}
