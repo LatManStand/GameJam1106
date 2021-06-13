@@ -14,7 +14,7 @@ public class ButtonController : MonoBehaviour{
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Cabeza")){
+        if (collision.CompareTag("Rock")){
 
             door.OpenDoor();
             GetComponent<SpriteRenderer>().sprite = buttonOn;
@@ -30,7 +30,8 @@ public class ButtonController : MonoBehaviour{
         if (collision.CompareTag("Rock")){
 
 
-           
+            door.CloseDoor();
+            GetComponent<SpriteRenderer>().sprite = buttonOff;
 
 
         }

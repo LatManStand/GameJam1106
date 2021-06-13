@@ -20,4 +20,15 @@ public class DoorController : MonoBehaviour{
     }
 
 
+    public void CloseDoor()
+    {
+
+        collider.enabled = true;
+
+        GetComponent<SpriteRenderer>().sprite = closedDoor;
+
+
+    }
+
+
 }
