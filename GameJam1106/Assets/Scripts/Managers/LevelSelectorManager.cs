@@ -34,7 +34,14 @@ public class LevelSelectorManager : MonoBehaviour
         }else{
 
             gameCompletedImage.SetActive(true);
-        
+
+            for (int i = 0; i < progressManager.lastLevelCompleted; i++)
+            {
+
+                level[i].interactable = true;
+
+            }
+
         }
 
 
