@@ -31,6 +31,8 @@ public class RockController : MonoBehaviour{
 
             taker.actualItem = itemSprite;
 
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+
         }
 
 
@@ -43,6 +45,8 @@ public class RockController : MonoBehaviour{
             taker.rock = null;
 
             taker.playerInside = false;
+
+            GetComponent<SpriteRenderer>().color = Color.white;
 
         }
 
