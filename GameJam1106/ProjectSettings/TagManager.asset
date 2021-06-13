@@ -10,6 +10,7 @@ TagManager:
   - Cuerpo
   - Rock
   - Piernas
+  - Item
   layers:
   - Default
   - TransparentFX
