@@ -6,13 +6,16 @@ using UnityEngine;
 
 public class CuerpoController : MonoBehaviour
 {
-    public float maxVelocidad;
-    public float aceleracion;
+    public float maxVelocidadAngular;
+    public float aceleracionAngular;
 
-    public float cooldownCabeza = 1f;
     public bool tengoCabeza = false;
+    public bool tengoBrazo = false;
+    public bool tengoPierna = false;
+
+    public float cooldownCogido = 1f;
+    public float ultimoCogido = 0f;
     private GameObject cabeza;
-    private float ultimaCabeza = 0f;
 
     public float fuerzaLanzarCabeza;
 
@@ -37,8 +40,15 @@ public class CuerpoController : MonoBehaviour
     {
         if (tengoCabeza)
         {
-            Rotar();
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!tengoPierna)
+            {
+                Rotar();
+            }
+            else
+            {
+                Andar();
+            }
+            if (Input.GetAxis("Jump") > 0.1f)
             {
                 LanzarCabeza();
             }
@@ -49,31 +59,36 @@ public class CuerpoController : MonoBehaviour
     {
         if (puntoQueRota == 1)
         {
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetAxis("Horizontal") > 0.1f)
             {
-                rb1.angularVelocity -= aceleracion * Time.deltaTime;
+                rb1.angularVelocity -= aceleracionAngular * Time.deltaTime;
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetAxis("Horizontal") < -0.1f)
             {
-                rb1.angularVelocity += aceleracion * Time.deltaTime;
+                rb1.angularVelocity += aceleracionAngular * Time.deltaTime;
             }
-            rb1.angularVelocity = Mathf.Clamp(rb1.angularVelocity, -maxVelocidad, maxVelocidad);
+            rb1.angularVelocity = Mathf.Clamp(rb1.angularVelocity, -maxVelocidadAngular, maxVelocidadAngular);
         }
 
         else if (puntoQueRota == 2)
         {
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetAxis("Horizontal") > 0.1f)
             {
-                rb2.angularVelocity -= aceleracion * Time.deltaTime;
+                rb2.angularVelocity -= aceleracionAngular * Time.deltaTime;
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetAxis("Horizontal") < -0.1f)
             {
-                rb2.angularVelocity += aceleracion * Time.deltaTime;
+                rb2.angularVelocity += aceleracionAngular * Time.deltaTime;
             }
-            rb2.angularVelocity = Mathf.Clamp(rb2.angularVelocity, -maxVelocidad, maxVelocidad);
+            rb2.angularVelocity = Mathf.Clamp(rb2.angularVelocity, -maxVelocidadAngular, maxVelocidadAngular);
         }
+
+    }
+
+    private void Andar()
+    {
 
     }
 
@@ -85,7 +100,7 @@ public class CuerpoController : MonoBehaviour
         cabeza.GetComponent<Rigidbody2D>().simulated = true;
         cabeza.GetComponent<Rigidbody2D>().AddForce((cabeza.transform.position - transform.position) * fuerzaLanzarCabeza);
         cabeza.layer = 11;
-        ultimaCabeza = Time.timeSinceLevelLoad;
+        ultimoCogido = Time.timeSinceLevelLoad;
     }
 
 
@@ -122,7 +137,7 @@ public class CuerpoController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Cabeza") && ultimaCabeza + cooldownCabeza < Time.timeSinceLevelLoad)
+        if (collision.CompareTag("Cabeza") && ultimoCogido + cooldownCogido < Time.timeSinceLevelLoad)
         {
             Invoke(nameof(ControllerCD), 0.3f);
             cabeza = collision.gameObject.transform.gameObject;
