@@ -159,7 +159,7 @@ public class CuerpoController : MonoBehaviour
             cabeza.transform.DOMove(transform.GetChild(1).position, 0.3f).Play();
             cabeza.transform.DOLocalRotate(Vector3.zero, 0.3f).Play();
         }
-        else if (collision.CompareTag("Piernas"))
+        else if (tengoCabeza && collision.CompareTag("Piernas") && ultimoCogido + cooldownCogido < Time.timeSinceLevelLoad)
         {
             tengoCabeza = false;
             Invoke(nameof(ControllerCD), 0.3f);
