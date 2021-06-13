@@ -7,6 +7,7 @@ using UnityEngine;
 public class CuerpoController : MonoBehaviour
 {
     public float velocidadAndar;
+    public float fuerzaSalto;
     public float maxVelocidadAngular;
     public float aceleracionAngular;
 
@@ -18,6 +19,7 @@ public class CuerpoController : MonoBehaviour
     public float ultimoCogido = 0f;
     private GameObject cabeza;
     private GameObject piernas;
+    private Rigidbody2D piernasRB;
     private Animator piernasAnim;
 
     public float fuerzaLanzarCabeza;
@@ -39,7 +41,7 @@ public class CuerpoController : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         if (tengoCabeza)
         {
@@ -92,8 +94,12 @@ public class CuerpoController : MonoBehaviour
 
     private void Andar()
     {
-        transform.parent.Translate(Vector2.right * Input.GetAxis("Horizontal") * velocidadAndar * Time.deltaTime, Space.World);
-        piernasAnim.SetFloat("Velocidad", Input.GetAxis("Horizontal"));
+        piernasRB.MovePosition(piernas.transform.position + Vector3.right * Input.GetAxis("Horizontal") * velocidadAndar * Time.deltaTime);
+        piernasAnim.SetFloat("Velocidad", Mathf.Abs(Input.GetAxis("Horizontal")));
+        if (Input.GetAxis("Vertical") > 0.1f)
+        {
+            piernasRB.MovePosition(Vector2.up * Input.GetAxis("Horizontal") * fuerzaSalto);
+        }
     }
 
     private void LanzarCabeza()
@@ -155,14 +161,20 @@ public class CuerpoController : MonoBehaviour
         }
         else if (collision.CompareTag("Piernas"))
         {
+            tengoCabeza = false;
             Invoke(nameof(ControllerCD), 0.3f);
             piernas = collision.gameObject.transform.gameObject;
+            piernasAnim = piernas.GetComponent<Animator>();
+            piernasRB = piernas.GetComponent<Rigidbody2D>();
             rb1.angularVelocity = 0f;
             rb1.simulated = false;
             rb2.angularVelocity = 0f;
             rb2.simulated = false;
             punto1.transform.SetParent(transform.GetChild(0));
             punto2.transform.SetParent(transform.GetChild(0));
+
+            transform.SetParent(piernas.transform);
+            tengoPierna = true;
 
             transform.DOMove(piernas.transform.GetChild(2).position, 0.3f).Play();
             transform.DOLocalRotate(Vector3.zero, 0.3f).Play();
